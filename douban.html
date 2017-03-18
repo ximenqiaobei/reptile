@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>data analysis</title>
+        <script src='echarts.js'></script>
+    </head>
+    <body>
+        <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+        <div id="main" style="width: 600px;height:400px;">
+
+        </div>
+
+
+        <script>
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+
+            // 指定图表的配置项和数据
+            option = {
+                title : {
+                    text: '豆瓣电影top250 评分分布',
+                    subtext: '',
+                    x:'center'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                legend: {
+                    orient: 'vertical',
+                    left: 'left',
+
+                    data: ['8.3以下','8.4-8.6','8.7-9','9.1-9.4','9.4以上']
+                },
+                series : [
+                    {
+                        name: '评分占比',
+                        type: 'pie',
+                        radius : '55%',
+                        center: ['50%', '60%'],
+                        data:[
+                            {value:5, name:'8.3以下'},
+                            {value:82, name:'8.4-8.6'},
+                            {value:97, name:'8.7-9'},
+                            {value:37, name:'9.1-9.4'},
+                            {value:4, name:'9.4以上'}
+                        ],
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            }
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option)
+        </script>
+    </body>
+</html>
